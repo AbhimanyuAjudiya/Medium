@@ -58,13 +58,13 @@ blogRouter.get("/bulk", async (c) => {
         datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate()) 
     try {
-        const offset = 5;
-        const limit = 10; // Number of blogs to load each time
+        // const offset = 5;
+        // const limit = 10; // Number of blogs to load each time
 
         // Fetch next set of blog posts
         const blogs = await prisma.post.findMany({
-            skip: offset,
-            take: limit
+            // skip: offset,
+            // take: limit
         });
         return c.json({
             blogs
