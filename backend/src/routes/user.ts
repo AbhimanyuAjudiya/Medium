@@ -34,7 +34,7 @@ userRouter.post('/signup',async (c) => {
     const jwt = await sign({
       id: user.id
     }, c.env.JWT_SECERET) 
-    return c.json({jwt});
+    return c.json(jwt);
   } catch {
     return c.text("unable to signup")
   }
@@ -65,7 +65,7 @@ userRouter.post('/signin',async (c) => {
     const jwt = await sign({
       id: user.id
     }, c.env.JWT_SECERET) 
-    return c.json({jwt});
+    return c.json(jwt);
   } catch {
     return c.text("unable to signin")
   }
