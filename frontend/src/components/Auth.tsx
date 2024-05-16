@@ -1,7 +1,7 @@
 import { SignupInput } from "@abhimanyu_ajudiya/medium-common-validation";
 import axios from "axios";
 import { ChangeEvent, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BACKEND_URL } from "../config";
 
 interface LabelledInputType {
@@ -13,6 +13,7 @@ interface LabelledInputType {
 
 export const Auth = ({type} : {type : "signin" | "signup"}) => {
 
+    const n = useNavigate()
     const [postInputs, setPostInputs] = useState<SignupInput>({
         name: "",
         email: "",
@@ -26,6 +27,7 @@ export const Auth = ({type} : {type : "signin" | "signup"}) => {
             await axios.post(`${BACKEND_URL}/api/v1/user${type == "signup" ? "/signup" : "/signin"}` , postInputs)
             .then((res) => {
                 localStorage.setItem("token",res.data);
+                n("/blogs")
             })
             .catch( (e) => {
             console.log(e);
